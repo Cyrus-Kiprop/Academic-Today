@@ -2,7 +2,7 @@ import json
 import random, string
 from django.shortcuts import render
 from django.core import serializers
-from landpage.form import ForgotPasswordForm
+from ..form import ForgotPasswordForm
 from django.http import HttpResponse
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -46,12 +46,12 @@ def random_word(length):
 def create_random_password(email):
     # Create new password
     new_password = random_word(8)
-    
+
     # Update the user account
     user = User.objects.get(email=email)
     user.set_password(new_password)
     user.save()
-    
+
     # Return the new password
     return new_password
 
@@ -59,9 +59,9 @@ def create_random_password(email):
 def send_email(email, new_password):
     if settings.EMAIL_HOST_USER is '' or settings.EMAIL_HOST_PASSWORD is '':
         return {'status' : 'failed', 'message' : 'cannot change password, emailer is offline, please check back later' }
-    
+
     text = "Your new password is: " + new_password
-            
+
     send_mail(
         "New Password",
         text,

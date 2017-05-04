@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.core import serializers
 
-from landpage.models import LandpageTeamMember
-from landpage.models import LandpageTopPickCourse
-from landpage.models import LandpageCoursePreview
-from landpage.models import CoursePreview
-from landpage.models import LandpageContactMessage
-from landpage.models import LandpagePartner
+from ..models import LandpageTeamMember
+from ..models import LandpageTopPickCourse
+from ..models import LandpageCoursePreview
+from ..models import CoursePreview
+from ..models import LandpageContactMessage
+from ..models import LandpagePartner
 from registrar.models import Course
-from landpage.form import ContactForm
+from ..form import ContactForm
 
 import json
 from django.http import HttpResponse
@@ -54,7 +54,7 @@ def save_contact_us_message(request):
         if request.method == 'POST':
             try:
                 form = ContactForm(request.POST)
-            
+
                 # Validate the form: the captcha field will automatically
                 # check the input
                 if form.is_valid():
@@ -62,7 +62,7 @@ def save_contact_us_message(request):
                     email = request.POST['email']
                     phone = request.POST['phone']
                     message = request.POST['message']
-                
+
                     # Save our message.
                     LandpageContactMessage.objects.create(
                         name=name,

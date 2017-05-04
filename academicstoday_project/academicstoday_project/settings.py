@@ -58,7 +58,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'captcha',
     'account',
-    'landpage',
+    'landpage.apps.LandpageConfig',
     'registration',
     'login',
     'registrar',

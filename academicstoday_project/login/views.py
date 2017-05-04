@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+#user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
 def login_modal(request):
     return render(request, 'login/modal.html',{})
@@ -20,7 +21,7 @@ def login_authentication(request):
                 username=request.POST.get('username').lower(),
                 password=request.POST.get('password')
             )
-            
+
             # Does the user exist for the username and has correct password?
             if user is not None:
                 # Is user suspended or active?
